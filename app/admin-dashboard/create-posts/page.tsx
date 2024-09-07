@@ -2,7 +2,6 @@
 import Navbar2 from "@/components/SideNavbar";
 import React, { useState, useRef, useMemo } from "react";
 import JoditEditor from "jodit-react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const FileUpload = () => {
@@ -17,8 +16,12 @@ const FileUpload = () => {
     </div>
   );
 };
-//@ts-ignore
-const CreatePost = ({ placeholder }) => {
+
+interface CreatePostProps {
+  placeholder?: string;
+}
+
+const CreatePost: React.FC<CreatePostProps> = ({ placeholder }) => {
   const [content, setContent] = useState("");
   const editor = useRef(null);
 
@@ -73,7 +76,7 @@ const CreatePost = ({ placeholder }) => {
               ref={editor}
               value={content}
               config={config}
-              //@ts-ignore
+              // @ts-ignore
               tabIndex={1}
               onBlur={(newContent) => setContent(newContent)}
               onChange={(newContent) => {}}
