@@ -35,7 +35,7 @@ const Home = () => {
     },
   ];
 
-  console.log(articles);
+
 
   return (
     <div>

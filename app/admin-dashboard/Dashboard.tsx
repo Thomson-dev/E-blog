@@ -40,6 +40,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
+      if (!currentUser) {
+        console.error("Current user is not available");
+        return;
+      }
+
       try {
         const res = await fetch(`http://localhost:8000/api/user/getusers`, {
           method: "GET",
@@ -49,21 +54,18 @@ const Dashboard = () => {
           },
         });
         const data = await res.json();
-        console.log(data)
-  
+        console.log(data);
+
         if (res.ok) {
           setUsers(data.users);
         }
       } catch (error) {
-         {/* @ts-ignore */}
-        console.log(error.message);
+        console.error("Error fetching users:", error);
       }
     };
-  
-    if (currentUser.isAdmin) {
-      fetchUsers();
-    }
-  }, [currentUser._id]);
+
+    fetchUsers();
+  }, [currentUser]);
 
 
   return (
