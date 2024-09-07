@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ReduxProvider } from "../Store/StoreProvider";
+ //@ts-ignore
 import store from "../Store/store";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      {/* @ts-ignore */}
         <ReduxProvider store={store}>{children}</ReduxProvider>
       </body>
     </html>

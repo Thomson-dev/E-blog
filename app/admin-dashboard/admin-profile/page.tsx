@@ -9,13 +9,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
- //@ts-ignore
+
+//@ts-ignore
 const ModalComponent = ({ toggleModal }) => {
-   //@ts-ignore
+  //@ts-ignore
   const { currentUser } = useSelector((state) => state.user);
   const router = useRouter();
   const dispatch = useDispatch();
- //@ts-ignore
+//@ts-ignore
   const handleBackgroundClick = (e) => {
     if (e.target.id === "popup-modal") {
       toggleModal();
@@ -50,7 +51,7 @@ const ModalComponent = ({ toggleModal }) => {
         router.push("/"); // Redirect to home page
       }
     } catch (error) {
-       //@ts-ignore
+      //@ts-ignore
       dispatch(deleteUserFailure(error.message));
     }
   };
@@ -63,7 +64,7 @@ const ModalComponent = ({ toggleModal }) => {
   return (
     <div
       id="popup-modal"
-       //@ts-ignore
+      //@ts-ignore
       tabIndex="-1"
       className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden"
       onClick={handleBackgroundClick}
@@ -137,7 +138,7 @@ const ModalComponent = ({ toggleModal }) => {
 
 const UserDashboard = () => {
   const [showModal, setShowModal] = useState(false);
-   //@ts-ignore
+  //@ts-ignore
   const { currentUser, loading, error: errorMessage } = useSelector( (state) => state.user);
   const router = useRouter();
 
@@ -158,7 +159,7 @@ const UserDashboard = () => {
       });
     }
   }, [currentUser, router]);
- //@ts-ignore
+//@ts-ignore
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -174,6 +175,7 @@ const UserDashboard = () => {
 
   return (
     <div className="">
+      <Navbar2 />
       <div className="max-w-[1400px] bg-white pt-[2rem] rounded-md mx-auto py-10">
         <div className="flex justify-center gap-5 flex-col items-center">
           <h2 className="text-center font-bold">Profile</h2>

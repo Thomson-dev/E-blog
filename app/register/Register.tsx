@@ -12,14 +12,16 @@ const Register = () => {
 
 
   const router = useRouter();
-
+ //@ts-ignore
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
-
+ //@ts-ignore
   const handleSubmit = async (e) => {
     e.preventDefault();
+     //@ts-ignore
     if (!formData.username || !formData.email || !formData.password) {
+       //@ts-ignore
       return setErrorMessage("Please fill out all fields.");
     }
     try {
@@ -41,6 +43,7 @@ const Register = () => {
         router.push("/login");
       }
     } catch (error) {
+       //@ts-ignore
       setErrorMessage(error.message);
       setLoading(false);
     }

@@ -2,3 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+/* styles.css */
+.custom-quill {
+  height: 200px; /* Adjust height */
+  background-color: white; /* Background color */
+  color: black; /* Text color */
+}
+
+
+.figtree {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.jodit-react-container{
+  z-index: 10 !important;
+ position: relative !important;
+}
+.z-index{
+  z-index: 10000;
+}
+.custom-quill .ql-editor {
+font-size:  1.5rem !important;
+  min-height: 150px; /* Minimum height for the editor */
+  background-color: white; /* Background color for the editor */
+  color: black; /* Text color for the editor */
+}
+
+.custom-quill .ql-toolbar {
+  background-color: #f3f4f6; /* Toolbar background color */
+  border: 1px solid #d1d5db; /* Toolbar border color */
+}
+
+/* Custom styles for Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff; /* Change the color of the buttons */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a background color */
+  border-radius: 50%; /* Make the buttons circular */
+  width: 40px; /* Set the width of the buttons */
+  height: 40px; /* Set the height of the buttons */
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Change background color on hover */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px; /* Change the size of the arrow icons */
+}

@@ -6,7 +6,10 @@ import { usePathname } from "next/navigation";
 import Logo2 from "../public/logo-04.svg";
 import React, { useState } from "react";
 import { BsFileEarmarkPost } from "react-icons/bs";
-import { FaCog, FaHome, FaSignInAlt, FaUser } from "react-icons/fa";
+import {  FaHome, FaSignInAlt, FaUber, FaUser,  } from "react-icons/fa";
+import { GiRamProfile } from "react-icons/gi";
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/classic.css'
 
 export interface NavLink {
   label: string;
@@ -22,29 +25,30 @@ export const navLinks: NavLink[] = [
   },
   {
     label: "Profile",
-    href: "/admin-dashboard/users",
-    icon: <FaUser />,
+    href: "/admin-dashboard/admin-profile",
+    icon: <GiRamProfile />,
   },
   {
     label: "Users",
-    href: "/dashboard/settings",
-    icon: <FaCog />,
+    href: "/admin-dashboard/users",
+    icon: <FaUser/>,
   },
 
   {
     label: "Posts",
-    href: "/dashboard/settings",
+    href: "/admin-dashboard/create-posts",
     icon: <BsFileEarmarkPost />,
   },
   // Add more links as needed
 ];
-const Sidebar = ({ isOpen, setIsOpen }) => {
+const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-screen">
+    
+    <div className=" hidden lg:flex ">
       <aside
-        className={` h-full w-[300px] flex flex-col justify-between px-10 shadow border  text-black `}
+        className={` min-h-screen w-[250px]  flex flex-col justify-between px-10 shadow border  text-black `}
       >
         <div className="mt-10">
           <Link href={"/"}>
@@ -57,11 +61,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               return (
                 <li key={link.href} className={` `}>
                   <Link
-                    className="flex flex-row gap-3 text-xl items-center"
+                    className="flex flex-row gap-3 text-lg items-center"
                     href={link.href}
                   >
                     {link.icon && (
-                      <span className="text-xl text-slate-700 ">
+                      <span className="text-2xl text-slate-700 ">
                         {link.icon}
                       </span>
                     )}

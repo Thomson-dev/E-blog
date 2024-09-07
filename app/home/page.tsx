@@ -1,13 +1,10 @@
-
-'use client';
-import Navbar from '@/components/Navbar'
 import React from 'react'
-import Home from './home/Home'
+import Home from '../page'
 
 const page = () => {
   return (
     <div>
-    <Home/>
+        <Home/>
     </div>
   )
 }

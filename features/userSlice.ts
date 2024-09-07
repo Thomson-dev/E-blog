@@ -28,6 +28,9 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.setItem("user", JSON.stringify(action.payload));
+      }
     },
     signInFailure: (state, action) => {
       state.loading = false;
@@ -41,6 +44,9 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.setItem("user", JSON.stringify(action.payload));
+      }
     },
     updateFailure: (state, action) => {
       state.loading = false;
@@ -54,6 +60,9 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.loading = false;
       state.error = null;
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.removeItem("user");
+      }
     },
     deleteUserFailure: (state, action) => {
       state.loading = false;
@@ -63,6 +72,9 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.error = null;
       state.loading = false;
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.removeItem("user");
+      }
     },
   },
 });

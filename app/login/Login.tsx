@@ -18,6 +18,9 @@ const GoogleAuth = () => {
 
   const router = useRouter();
   const dispatch = useDispatch();
+
+
+  
   const handleGoogleClick = async () => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
@@ -48,6 +51,7 @@ const GoogleAuth = () => {
     <div className="flex justify-center mt-[3rem] rounded-sm shadow-sm">
       <button
         onClick={handleGoogleClick}
+        type="button"
         className=" w-[90%] rounded-md  py-4  flex items-center justify-center space-x-3 text-base hover:bg-black duration-700 border text-black  hover:text-white bg-white"
       >
         <FaGoogle className="" />
@@ -62,20 +66,18 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const {
-    currentUser,
-    loading,
-    error: errorMessage,
-  } = useSelector((state) => state.user);
+ //@ts-ignore
+  const { currentUser, loading, error: errorMessage,} = useSelector((state) => state.user);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const router = useRouter();
-
+ //@ts-ignore
   const handleSubmit = async (e) => {
     e.preventDefault();
+     //@ts-ignore
     if (!formData.email || !formData.password) {
       return dispatch(signInFailure("Please fill all the fields"));
     }
@@ -97,6 +99,7 @@ const Login = () => {
         router.push("/");
       }
     } catch (error) {
+       //@ts-ignore
       dispatch(signInFailure(error.message));
     }
   };
