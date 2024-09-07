@@ -17,6 +17,7 @@ const FileUpload = () => {
   );
 };
 
+// Define proper typing for props
 interface CreatePostProps {
   placeholder?: string;
 }
@@ -76,7 +77,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ placeholder }) => {
               ref={editor}
               value={content}
               config={config}
-              // @ts-ignore
+              //@ts-ignore
               tabIndex={1}
               onBlur={(newContent) => setContent(newContent)}
               onChange={(newContent) => {}}
