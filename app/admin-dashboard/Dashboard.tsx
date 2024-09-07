@@ -63,7 +63,7 @@ const Dashboard = () => {
     if (currentUser.isAdmin) {
       fetchUsers();
     }
-  }, [currentUser._id]);
+  }, [currentUser]);
 
 
   return (
