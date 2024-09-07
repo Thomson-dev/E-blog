@@ -22,22 +22,22 @@ interface CreatePostProps {
   placeholder?: string;
 }
 
-const CreatePost: React.FC<CreatePostProps> = ({ placeholder }) => {
+const CreatePost = () => {
   const [content, setContent] = useState("");
   const editor = useRef(null);
 
-  const config = useMemo(
-    () => ({
-      readonly: false,
-      placeholder: placeholder || "Start typing...",
-    }),
-    [placeholder]
-  );
+  // const config = useMemo(
+  //   () => ({
+  //     readonly: false,
+  //     placeholder: placeholder || "Start typing...",
+  //   }),
+  //   [placeholder]
+  // );
 
   return (
     <div>
       <Navbar2 />
-      <div className="max-w-[1000px] w-[95%] mx-auto min-h-[85vh]">
+      {/* <div className="max-w-[1000px] w-[95%] mx-auto min-h-[85vh]">
         <h1 className="text-3xl py-6 font-semibold text-center">Create Post</h1>
 
         <form className="flex-col mt-[2rem]">
@@ -90,7 +90,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ placeholder }) => {
             />
           </div>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 };
