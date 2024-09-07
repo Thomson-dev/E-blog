@@ -124,8 +124,7 @@ const UserTable = () => {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {currentUsers.map((user, index) => (
-            <tr key={user._id
-            }>
+            <tr key={index}>
               <td className="px-6 py-4 text-center whitespace-nowrap">
               {/* @ts-ignore */}
               {user.username}
