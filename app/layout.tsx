@@ -20,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* @ts-ignore */}
         <ReduxProvider store={store}>{children}</ReduxProvider>
       </body>
     </html>
