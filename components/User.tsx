@@ -56,8 +56,8 @@ const UserTable = ({users}) => {
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
       {/* @ts-ignore */}
-        {users &&  users.slice(0,4).map((user, index) => (
-          <tr key={index}>
+        {users &&  users.slice(0,4).map((user) => (
+          <tr key={user._id}>
             <td className="px-6 py-4 text-center whitespace-nowrap">
               {user.username}
             </td>
