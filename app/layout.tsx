@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ReduxProvider } from "../Store/StoreProvider";
-import { store } from "../Store/store"; // Correct import as named export
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {/* @ts-ignore */}
-        <ReduxProvider store={store}>{children}</ReduxProvider>
+        <ReduxProvider >{children}</ReduxProvider>
       </body>
     </html>
   );
