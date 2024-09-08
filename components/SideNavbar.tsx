@@ -44,7 +44,7 @@ const Navbar2 = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
+//@ts-ignore
   const { currentUser, loading, error: errorMessage } = useSelector((state) => state.user);
 
   return (
