@@ -4,7 +4,7 @@ import Dashboard from './Dashboard'
 const page = () => {
   return (
     <div>
-        <Dashboard/>
+        {/* <Dashboard/> */}
     </div>
   )
 }
