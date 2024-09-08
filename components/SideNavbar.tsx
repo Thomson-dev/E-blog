@@ -44,11 +44,12 @@ const Navbar2 = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
- //@ts-ignore
-  const {currentUser, loading, error: errorMessage,} = useSelector((state) => state.user);
+
+  const { currentUser, loading, error: errorMessage } = useSelector((state) => state.user);
+
   return (
-    <div className="py-4  px-10 flex sticky top-0 items-center justify-between bg-white shadow-sm ">
-      <div className="">
+    <div className="py-4 px-10 flex sticky top-0 items-center justify-between bg-white shadow-sm">
+      <div>
         <button onClick={toggleSidebar}>
           <IoMdMenu className="text-3xl" />
         </button>
@@ -63,12 +64,16 @@ const Navbar2 = () => {
         </div>
 
         <div className="relative h-12 w-12">
-          <Image
-            fill
-            className=" rounded-full"
-            src={currentUser &&  currentUser.profilePicture}
-            alt="user photo"
-          />
+          {currentUser && currentUser.profilePicture ? (
+            <Image
+              fill
+              className="rounded-full"
+              src={currentUser.profilePicture}
+              alt="user photo"
+            />
+          ) : (
+            <div className="rounded-full bg-gray-300 h-full w-full"></div>
+          )}
         </div>
       </div>
 
