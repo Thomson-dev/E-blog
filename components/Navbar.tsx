@@ -59,7 +59,7 @@ const DropDown = () => {
 
   const handleSignout = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/user/signout", {
+      const res = await fetch("https://e-blog-api.onrender.com/api/user/signout", {
         method: "POST",
       });
       const data = await res.json();
@@ -222,7 +222,7 @@ const Navbar = () => {
           )}
 
           <div
-            className={`lg:w-[350px] w-[300px] z-50 h-screen fixed text-white bg-[#181823] ${
+            className={`lg:w-[300px] w-[250px] z-50 h-screen fixed text-white bg-[#181823] ${
               isOpen
                 ? "right-[0rem] duration-1000 delay-75"
                 : "-right-[30rem] duration-1000 delay-75"

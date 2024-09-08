@@ -169,7 +169,7 @@ const PostDetails = () => {
                 alt=""
                 className="rounded-lg"
                 width={800}
-                height={400}
+                height={500}
                 src={articles2[3].image}
               />
             </div>
@@ -183,9 +183,9 @@ const PostDetails = () => {
                   : articles2[3].title}
               </h1>
             </div>
-            <hr className="my-14 w-[98%]" />
+            <hr className="my-5 w-[98%]" />
             <div className="">
-              <p className="text-xl leading-[2.8rem] figtree max-w-3xl">
+              <p className="lg:text-xl text-base leading-[2rem] figtree max-w-3xl">
                 {articles2[3].content}
               </p>
             </div>

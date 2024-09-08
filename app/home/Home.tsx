@@ -60,9 +60,7 @@ const Home = () => {
                   </div>
 
                   <h1 className="text-2xl font-bold  mt-3">{item.title}</h1>
-                  <div className="mt-3">
-                    <p>{item.author}</p>
-                  </div>
+                 
                 </div>
               </div>
             </div>

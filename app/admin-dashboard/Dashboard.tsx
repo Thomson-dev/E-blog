@@ -119,11 +119,14 @@
 // };
 
 // export default Dashboard;
+import Navbar2 from '@/components/SideNavbar'
 import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <Navbar2 />
+    </div>
   )
 }
 

@@ -26,7 +26,7 @@ const GoogleAuth = () => {
     provider.setCustomParameters({ prompt: "select_account" });
     try {
       const resultsFromGoogle = await signInWithPopup(auth, provider);
-      const res = await fetch("http://localhost:8000/api/auth/google", {
+      const res = await fetch("https://e-blog-api.onrender.com/api/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -83,7 +83,7 @@ const Login = () => {
     }
     try {
       dispatch(signInStart());
-      const res = await fetch("http://localhost:8000/api/auth/signin", {
+      const res = await fetch("https://e-blog-api.onrender.com/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -111,10 +111,10 @@ const Login = () => {
   }, [currentUser]);
 
   return (
-    <div className="max-w-[400px] w-[95%] py-12  flex justify-center min-h-screen   mx-auto">
+    <div className="max-w-[400px] w-[95%]  flex justify-center min-h-[90vh mt-[2rem]   mx-auto">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col  w-full space-y-5 mt-[3rem] "
+        className="flex flex-col  w-full space-y-5 "
       >
         <h2 className="py-[2rem] lg:text-4xl text-3xl text-center">Sign In</h2>
 

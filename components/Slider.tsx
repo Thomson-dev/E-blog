@@ -54,8 +54,8 @@ const Slider = () => {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <div className="flex items-center gap-14  justify-center">
-            <Image src={image} alt={image} className=""   width={170} height={190} />
+          <div className="flex items-center gap-14 relative max-w-[150px] h-[150px] justify-center">
+            <Image src={image} alt={image} className=""  fill />
           </div>
         </SwiperSlide>
       ))}

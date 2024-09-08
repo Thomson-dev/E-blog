@@ -79,7 +79,7 @@ const Navbar2 = () => {
         ></div>
       )}
       <div
-        className={`w-[350px] z-index min-h-screen fixed lg:hidden text-black bg-[#ffff] ${
+        className={`w-[250px] z-index min-h-screen fixed lg:hidden text-black bg-[#ffff] ${
           isOpen ? "left-0 duration-1000 delay-75" : "-left-[30rem] duration-1000 delay-75"
         } top-0`}
       >
