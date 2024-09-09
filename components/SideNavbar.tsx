@@ -48,7 +48,7 @@ const Navbar2 = () => {
   const { currentUser, loading, error: errorMessage } = useSelector((state) => state.user);
 
   return (
-    <div className="py-4 px-10 flex sticky top-0 items-center justify-between bg-white shadow-sm">
+    <div className="py-4 lg:px-10 px-4 flex sticky top-0 items-center justify-between bg-white shadow-sm">
       <div>
         <button onClick={toggleSidebar}>
           <IoMdMenu className="text-3xl" />

@@ -74,7 +74,7 @@ const CommentSection = () => {
       }}
       className="lg:p-8 p-2 flex flex-col space-y-8 rounded-lg"
     >
-      <h1 className="text-3xl font-semibold">Leave Your Comment:</h1>
+      <h1 className="lg:text-3xl text-lg font-semibold">Leave Your Comment:</h1>
       <div>
         <label
           htmlFor="message"
@@ -117,7 +117,7 @@ const Comment = () => {
   ];
 
   return (
-    <div className="border rounded-lg  p-7 w-full">
+    <div className="border rounded-lg p-3  lg:p-7 w-full">
       <div className="">
         <h1 className="text-xl font-semibold">Comments (02)</h1>
       </div>
@@ -129,7 +129,7 @@ const Comment = () => {
               <img
                 src={comment.profileImage}
                 alt=""
-                className="w-14 h-14 rounded-full"
+                className="w-16 h-14 rounded-full"
               />
             </div>
             <div className="w-full flex flex-col gap-3">
@@ -169,7 +169,7 @@ const PostDetails = () => {
                 alt=""
                 className="rounded-lg"
                 width={800}
-                height={500}
+                height={800}
                 src={articles2[3].image}
               />
             </div>
@@ -185,7 +185,7 @@ const PostDetails = () => {
             </div>
             <hr className="my-5 w-[98%]" />
             <div className="">
-              <p className="lg:text-xl text-base leading-[2rem] figtree max-w-3xl">
+              <p className="lg:text-xl text-lg leading-[2.3rem] lg:leading-[3rem] figtree max-w-3xl">
                 {articles2[3].content}
               </p>
             </div>
