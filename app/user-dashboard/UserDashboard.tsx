@@ -191,7 +191,7 @@ const UserDashboard = () => {
         </div>
 
         <div className="mt-[3rem]">
-          <div className="max-w-[900px] w-[94%] min-h-[50vh] mx-auto">
+          <div className="max-w-[900px] w-[96%] px-3 min-h-[50vh] mx-auto">
             <form className="flex flex-col gap-y-7">
               <div className="flex items-center justify-between">
                 <h4>Username</h4>
@@ -231,7 +231,7 @@ const UserDashboard = () => {
                       onClick={toggleModal}
                       className="bg-red-600 text-white px-4 py-2 rounded-md"
                     >
-                      Delete Account
+                      Delete 
                     </button>
                   </div>
                   <div>
