@@ -44,7 +44,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="shadow-md border min-h-[60vh]  py-16 flex lg:items-center">
+    <div className="shadow-md border  py-16 flex lg:items-center">
       <div className="max-w-[1300px] w-[95%] p-2 flex lg:items-center mx-auto ">
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 place-content-start lg:place-items-center  gap-5">
           <div className="">
