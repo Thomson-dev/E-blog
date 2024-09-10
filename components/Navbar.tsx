@@ -181,8 +181,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`bg-white sticky top-0 z-50 transition
-    -all duration-300 ${scroll ? "shadow py-4" : "py-3"}`} >
+    <div className={`bg-white py-7 sticky top-0 z-50 transition
+    -all duration-300 ${scroll ? "shadow py-4" : "py-4"}`} >
       <div className="mx-auto w-[92%] relative  max-w-[1350px]">
         <div className="flex flex-row items-center justify-between">
           <Link href="/">
