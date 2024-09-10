@@ -20,6 +20,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../../firebase";
+import { toast } from "react-toastify";
 
 //@ts-ignore
 const ModalComponent = ({ toggleModal }) => {
@@ -162,7 +163,7 @@ const UserDashboard = () => {
   const dispatch = useDispatch();
 
   //@ts-ignore
-  const {currentUser,loading,error: errorMessage,} = useSelector((state) => state.user);
+  const {currentUser,loading, error: errorMessage,} = useSelector((state) => state.user);
   const router = useRouter();
   //@ts-ignore
   const handleImageChange = (e) => {
@@ -227,7 +228,7 @@ const UserDashboard = () => {
   };
 
   const [formData, setFormData] = useState({});
-  console.log(formData)
+  
 
   useEffect(() => {
     if (!currentUser) {
@@ -254,11 +255,13 @@ const UserDashboard = () => {
     if (Object.keys(formData).length === 0) {
       //@ts-ignore
       setUpdateUserError("No changes made");
+      toast.error("No changes made");
       return;
     }
     if (imageFileUploading) {
       //@ts-ignore
       setUpdateUserError("Please wait for image to upload");
+      toast.error("Please wait for image to upload");
       return;
     }
     try {
@@ -278,16 +281,20 @@ const UserDashboard = () => {
       if (!res.ok) {
         dispatch(updateFailure(data.message));
         setUpdateUserError(data.message);
+        toast.error(data.message);
       } else {
         dispatch(updateSuccess(data));
         //@ts-ignore
         setUpdateUserSuccess("User's profile updated successfully");
+        toast.success("User's profile updated successfully");
       }
     } catch (error) {
       //@ts-ignore
       dispatch(updateFailure(error.message));
       //@ts-ignore
       setUpdateUserError(error.message);
+      //@ts-ignore
+      toast.error(error.message);
     }
   };
 
@@ -333,7 +340,7 @@ const UserDashboard = () => {
         </div>
 
         <div className="mt-[3rem]">
-          <div className="max-w-[900px] w-[96%] px-3 min-h-[50vh] mx-auto">
+          <div className="max-w-[900px] w-[96%] px-3 py-7 mx-auto">
             <div className="flex flex-col gap-y-7">
               <div className="flex items-center justify-between">
                 <h4>Username</h4>
@@ -394,16 +401,8 @@ const UserDashboard = () => {
           </div>
         </div>
       </form>
-      <div className="flex justify-center text-center">
-        {errorMessage && (
-          <div
-            className="p-4 mb-4 mt-3  w-[90%] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-            role="alert"
-          >
-            <span className="font-medium no-underline ">{errorMessage}</span>
-          </div>
-        )}
-      </div>
+     
+     
       {showModal && <ModalComponent toggleModal={toggleModal} />}
     </div>
   );

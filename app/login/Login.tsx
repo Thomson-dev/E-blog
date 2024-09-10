@@ -12,6 +12,7 @@ import {
 } from "../../features/userSlice";
 import { useRouter } from "next/navigation";
 import { Alert, Spinner } from "flowbite-react";
+import { toast } from "react-toastify";
 
 const GoogleAuth = () => {
   const auth = getAuth(app);
@@ -79,7 +80,7 @@ const Login = () => {
     e.preventDefault();
      //@ts-ignore
     if (!formData.email || !formData.password) {
-      return dispatch(signInFailure("Please fill all the fields"));
+      return dispatch(signInFailure(toast.error("All fields are required")));
     }
     try {
       dispatch(signInStart());
@@ -90,7 +91,7 @@ const Login = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInFailure(data.message));
+        dispatch(signInFailure(toast.error(data.message)));
       }
 
       if (res.ok) {
@@ -100,7 +101,7 @@ const Login = () => {
       }
     } catch (error) {
        //@ts-ignore
-      dispatch(signInFailure(error.message));
+      dispatch(signInFailure(toast.error(error.message)));
     }
   };
 
@@ -111,7 +112,7 @@ const Login = () => {
   }, [currentUser]);
 
   return (
-    <div className="max-w-[400px] w-[95%]  flex justify-center min-h-[90vh mt-[2rem]   mx-auto">
+    <div className="max-w-[400px] w-[95%]  flex justify-center min-h-[90vh] mt-[4rem]   mx-auto">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col  w-full space-y-5 "
@@ -156,19 +157,10 @@ const Login = () => {
         <div className="text-center  mt-10">
           <span>Have no account yet</span>
           <Link className="text-orange-400 " href={"/register"}>
-            ? Sign Up
+             ? Sign Up
           </Link>
         </div>
-        <div className="flex justify-center text-center">
-          {errorMessage && (
-            <div
-              className="p-4 mb-4 mt-3  w-[90%] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-              role="alert"
-            >
-              <span className="font-medium no-underline ">{errorMessage}</span>
-            </div>
-          )}
-        </div>
+       
       </form>
     </div>
   );

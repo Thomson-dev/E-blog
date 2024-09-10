@@ -75,7 +75,7 @@ const DropDown = () => {
   };
 
   return (
-    <div className="border relative" ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
       <button
         className="flex text-sm bg-gray-800 rounded-full "
         type="button"
@@ -85,7 +85,7 @@ const DropDown = () => {
         <Image
           width={100}
           height={100}
-          className="w-8 h-8 rounded-full"
+          className="w-12 h-12 rounded-full"
           src={currentUser?.profilePicture || "/default-profile.png"}
           alt="user photo"
         />
@@ -129,8 +129,8 @@ const DropDown = () => {
               </button>
             </li>
           </ul>
-          <div className="py-2">
-            <button type="button" onClick={handleSignout} className="block px-4 py-2 w-full text-sm text-left text-gray-700 hover:bg-gray-100     ">
+          <div className="py-1 bg-red-500">
+            <button type="button" onClick={handleSignout} className="block px-4 py-2 w-full text-sm rounded-t-md text-white text-center     ">
               <a href="#">Sign out</a>
             </button>
           </div>
@@ -181,7 +181,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`bg-white sticky top-0 z-50 transition-all duration-300 ${scroll ? "shadow py-7" : "py-6"}`} >
+    <div className={`bg-white sticky top-0 z-50 transition-all duration-300 ${scroll ? "shadow py-8" : "py-8"}`} >
       <div className="mx-auto w-[92%] relative  max-w-[1350px]">
         <div className="flex flex-row items-center justify-between">
           <Link href="/">

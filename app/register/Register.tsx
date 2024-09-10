@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Alert, Button, Label, Spinner } from "flowbite-react";
 
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
@@ -22,7 +23,7 @@ const Register = () => {
      //@ts-ignore
     if (!formData.username || !formData.email || !formData.password) {
        //@ts-ignore
-      return setErrorMessage("Please fill out all fields.");
+      return toast.error("Please fill all the fields");
     }
     try {
       setLoading(true);
@@ -35,7 +36,7 @@ const Register = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        return setErrorMessage(data.message);
+        return toast.error(data.message);
       }
       setLoading(false);
       if (res.ok) {
@@ -44,14 +45,14 @@ const Register = () => {
       }
     } catch (error) {
        //@ts-ignore
-      setErrorMessage(error.message);
+      toast.error(error.message);
       setLoading(false);
     }
   };
   return (
-    <div className="max-w-[500px] w-[95%]  flex justify-center min-h-screen   mx-auto">
+    <div className="max-w-[500px] w-[95%]  flex justify-center min-h-[90vh]   mx-auto">
       <form
-        className="flex flex-col  w-full space-y-5 mt-[3rem]  "
+        className="flex flex-col  w-full space-y-5 mt-[5rem]  "
         onSubmit={handleSubmit}
       >
         <h2 className="py-[2rem] lg:text-4xl text-3xl text-center">Sign Up</h2>
@@ -103,12 +104,6 @@ const Register = () => {
           </Link>
           </div>
          
-
-          {errorMessage && (
-           <div className="p-4 mb-4 mt-10  w-[90%] text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-           <span className="font-medium no-underline ">{errorMessage}</span> 
-         </div>
-          )}
         </div>
       </form>
     </div>
