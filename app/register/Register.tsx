@@ -50,9 +50,9 @@ const Register = () => {
     }
   };
   return (
-    <div className="max-w-[500px] w-[95%]  flex justify-center min-h-[90vh]   mx-auto">
+    <div className="max-w-[500px] w-[95%] px-3 flex justify-center min-h-[90vh]   mx-auto">
       <form
-        className="flex flex-col  w-full space-y-5 mt-[5rem]  "
+        className="flex flex-col   w-full space-y-5 mt-[5rem]  "
         onSubmit={handleSubmit}
       >
         <h2 className="py-[2rem] lg:text-4xl text-3xl text-center">Sign Up</h2>

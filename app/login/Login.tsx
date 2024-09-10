@@ -112,7 +112,7 @@ const Login = () => {
   }, [currentUser]);
 
   return (
-    <div className="max-w-[400px] w-[95%]  flex justify-center min-h-[90vh] mt-[4rem]   mx-auto">
+    <div className="max-w-[400px] w-[95%]  flex justify-center min-h-[90vh] mt-[4rem]  px-3  mx-auto">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col  w-full space-y-5 "

@@ -93,7 +93,7 @@ const DropDown = () => {
       {dropdown && (
         <div
           id="dropdownAvatar"
-          className=" bg-white absolute z-50  top-10 -right-2 divide-y divide-gray-100 rounded-lg shadow w-44"
+          className=" bg-white absolute z-50  top-12 -right-2 divide-y divide-gray-100 rounded-lg shadow w-44"
         >
           <div className="px-4 py-3 flex justify-between items-center text-sm text-gray-900">
             {currentUser?.isAdmin ? (
@@ -129,8 +129,8 @@ const DropDown = () => {
               </button>
             </li>
           </ul>
-          <div className="py-1 bg-red-500">
-            <button type="button" onClick={handleSignout} className="block px-4 py-2 w-full text-sm rounded-t-md text-white text-center     ">
+          <div className="py-1 bg-red-700">
+            <button type="button" onClick={handleSignout} className="block px-4 py-2 w-full text-sm rounded-t-md text-white text-left     ">
               <a href="#">Sign out</a>
             </button>
           </div>
@@ -181,7 +181,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`bg-white sticky top-0 z-50 transition-all duration-300 ${scroll ? "shadow py-8" : "py-8"}`} >
+    <div className={`bg-white sticky top-0 z-50 transition
+    -all duration-300 ${scroll ? "shadow py-8" : "py-5"}`} >
       <div className="mx-auto w-[92%] relative  max-w-[1350px]">
         <div className="flex flex-row items-center justify-between">
           <Link href="/">
