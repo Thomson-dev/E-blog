@@ -129,8 +129,8 @@ const DropDown = () => {
               </button>
             </li>
           </ul>
-          <div className="py-1 bg-red-700">
-            <button type="button" onClick={handleSignout} className="block px-4 py-2 w-full text-sm rounded-t-md text-white text-left     ">
+          <div className="py-1 ">
+            <button type="button" onClick={handleSignout} className="block px-4 py-2 text-red-500 w-full text-sm rounded-t-md text-left     ">
               <a href="#">Sign out</a>
             </button>
           </div>

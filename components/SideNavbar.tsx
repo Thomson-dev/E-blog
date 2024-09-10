@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { IoIosNotificationsOutline, IoMdMenu } from "react-icons/io";
 import { useSelector } from "react-redux";
-
+import Logo2 from "../public/logo-04.svg";
 import { BsFileEarmarkPost } from "react-icons/bs";
 import { FaCog, FaHome, FaSignInAlt, FaUser } from "react-icons/fa";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export const navLinks: NavLink[] = [
   {
     label: "Users",
     href: "/admin-dashboard/users",
-    icon: <FaUser/>,
+    icon: <FaUser />,
   },
 
   {
@@ -47,8 +47,8 @@ const Navbar2 = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-//@ts-ignore
-  const { currentUser, loading, error: errorMessage } = useSelector((state) => state.user);
+  //@ts-ignore
+  const { currentUser, loading,error: errorMessage,} = useSelector((state) => state.user);
 
   return (
     <div className="py-4 lg:px-10 px-4 flex sticky top-0 items-center justify-between bg-white shadow-sm">
@@ -88,29 +88,33 @@ const Navbar2 = () => {
       )}
       <div
         className={`w-[250px] px-8 z-index h-full fixed lg:hidden text-black bg-[#ffff] ${
-          isOpen ? "left-0 duration-1000 delay-75" : "-left-[30rem] duration-1000 delay-75"
+          isOpen
+            ? "left-0 duration-1000 delay-75"
+            : "-left-[30rem] duration-1000 delay-75"
         } top-0`}
       >
-       <ul className="mt-[5rem] flex space-y-12 flex-col">
-            {navLinks.map((link: NavLink) => {
-            
-              return (
-                <li key={link.href} className={` `}>
-                  <Link
-                    className="flex flex-row gap-3 text-lg items-center"
-                    href={link.href}
-                  >
-                    {link.icon && (
-                      <span className="text-2xl text-slate-700 ">
-                        {link.icon}
-                      </span>
-                    )}
-                    <span className="text-slate-700 ">{link.label}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+        <ul className="mt-[5rem] flex space-y-12 flex-col">
+          <Link href={"/"}>
+            <Image src={Logo2} alt="" width={100} height={100} />
+          </Link>
+          {navLinks.map((link: NavLink) => {
+            return (
+              <li key={link.href} className={` `}>
+                <Link
+                  className="flex flex-row gap-3 text-lg items-center"
+                  href={link.href}
+                >
+                  {link.icon && (
+                    <span className="text-2xl text-slate-700 ">
+                      {link.icon}
+                    </span>
+                  )}
+                  <span className="text-slate-700 ">{link.label}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

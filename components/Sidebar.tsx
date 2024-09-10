@@ -48,7 +48,7 @@ const Sidebar = () => {
     
     <div className=" hidden lg:flex ">
       <aside
-        className={` min-h-screen w-[250px]  flex flex-col justify-between px-10 shadow border  text-black `}
+        className={` h-screen w-[250px] fixed top-0 left-0 flex flex-col justify-between px-10 shadow border  text-black `}
       >
         <div className="mt-10">
           <Link href={"/"}>
@@ -57,12 +57,14 @@ const Sidebar = () => {
           <ul className="mt-[5rem] flex space-y-12 flex-col">
             {navLinks.map((link: NavLink) => {
               const isActive =
-                pathname === link.href || pathname.startsWith(`${link.href}/`);
+                pathname === link.href || pathname.startsWith
+                (`${link.href}/`);
               return (
                 <li key={link.href} className={` `}>
                   <Link
                     className="flex flex-row gap-3 text-lg items-center"
                     href={link.href}
+                    
                   >
                     {link.icon && (
                       <span className="text-2xl text-slate-700 ">

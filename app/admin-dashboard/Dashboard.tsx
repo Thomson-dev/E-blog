@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Footer from "@/components/Footer";
 
 const Dashboard = () => {
   const customerData = [
@@ -36,7 +37,7 @@ const Dashboard = () => {
   ];
 
   const [users, setUsers] = useState([]);
-  
+
   /* @ts-ignore */
   const {currentUser,loading,error: errorMessage,} = useSelector((state) => state.user);
 
@@ -90,7 +91,7 @@ const Dashboard = () => {
           Users
         </h2>
 
-        <div className="grid lg:grid-cols-3 grid-cols-1 mt-6 gap-6">
+        <div className="grid lg:grid-cols-3 grid-cols-1 my-[4rem] gap-6">
           {customerData.map((item, index) => (
             <div
               key={index}
@@ -126,10 +127,11 @@ const Dashboard = () => {
             </div>
           ))}
         </div>
-        <div className=" mt-[4rem] border rounded-md p-2  max-w-full ">
+        <div className=" mb-[4rem] border rounded-md p-2  max-w-full ">
           <User users={users} />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -38,38 +38,38 @@ const UserTable = ({users}) => {
   
 
   return (
-    <table className=" w-full divide-y  divide-gray-200">
+    <table className=" w-full divide-y px-3 table-auto  divide-gray-200">
       <thead className="bg-gray-50">
         <tr>
-          <th scope="col" className="text-center px-6 py-3">
+          <th scope="col" className="text-center lg:px-6 py-3">
             Name
           </th>
-          <th scope="col" className="px-6 text-center py-3">
+          <th scope="col" className="lg:px-6 text-center py-3">
             Status
           </th>
-          <th scope="col" className="px-6 text-center py-3">
+          <th scope="col" className="lg:px-6 text-center py-3">
             Email
           </th>
-          <th scope="col" className="px-6 text-center py-3">
+          {/* <th scope="col" className="lg:px-6 text-center py-3">
             createdAt
-          </th>
+          </th> */}
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
       {/* @ts-ignore */}
         {users &&  users.slice(0,4).map((user) => (
           <tr key={user._id}>
-            <td className="px-6 py-4 text-center whitespace-nowrap">
+            <td className="lg:px-6 py-4 text-center whitespace-nowrap">
               {user.username}
             </td>
-            <td className="px-6 py-4 text-center whitespace-nowrap">
+            <td className="lg:px-6 py-4 text-center whitespace-nowrap">
               {user.isAdmin == true ? 'Admin' : 'User'}
             </td>
-            <td className="px-6 py-4 text-center whitespace-nowrap">
+            <td className="lg:px-6 py-4 text-center whitespace-nowrap">
               {user.email}
             </td>
-            <td className="px-6 py-4 text-center whitespace-nowrap">
-            {new Date(user.createdAt).toLocaleDateString()}
+            <td className="lg:px-6 py-4 text-center whitespace-nowrap">
+            {/* {new Date(user.createdAt).toLocaleDateString()} */}
             </td>
           </tr>
         ))}

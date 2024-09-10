@@ -16,7 +16,11 @@ export default function SettingsLayout({
   return (
     <div className="flex">
        {/* @ts-ignore */}
-      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+       <div className="w-[250px] hidden lg:block">
+         {/* @ts-ignore */}
+       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+       </div>
+      
 
       <section className={`flex-1 `}>{children}</section>
     </div>

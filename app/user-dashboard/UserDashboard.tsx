@@ -21,6 +21,7 @@ import {
 } from "firebase/storage";
 import { app } from "../../firebase";
 import { toast } from "react-toastify";
+import Footer from "@/components/Footer";
 
 //@ts-ignore
 const ModalComponent = ({ toggleModal }) => {
@@ -342,34 +343,34 @@ const UserDashboard = () => {
         <div className="mt-[3rem]">
           <div className="max-w-[900px] w-[96%] px-3 py-7 mx-auto">
             <div className="flex flex-col gap-y-7">
-              <div className="flex items-center justify-between">
-                <h4>Username</h4>
+              <div className="flex flex-col  ">
+                <h4 className="mb-2 lg:mb-2" >Username</h4>
                 <input
                   id="username"
                   type="text"
-                  className="w-[70%] py-3 outline-none rounded-md bg-[#F3F4F6]"
+                  className="w-full py-3 outline-none rounded-md bg-[#F3F4F6]"
                   //@ts-ignore
                   value={formData.username}
                   onChange={handleChange}
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <h4>Email</h4>
+              <div className="flex flex-col ">
+                <h4 className="mb-2">Email</h4>
                 <input
                   id="email"
                   type="email"
-                  className="w-[70%] py-3 outline-none rounded-md bg-[#F3F4F6]"
+                  className="w-full py-3 outline-none rounded-md bg-[#F3F4F6]"
                   //@ts-ignore
                   value={formData.email}
                   onChange={handleChange}
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <h4>Password</h4>
+              <div className="flex flex-col ">
+                <h4 className="mb-2">Password</h4>
                 <input
                   id="password"
                   type="password"
-                  className="w-[70%] py-3 outline-none rounded-md bg-[#F3F4F6]"
+                  className="w-full py-3 outline-none rounded-md bg-[#F3F4F6]"
                   //@ts-ignore
                   value={formData.password}
                   onChange={handleChange}
@@ -401,6 +402,7 @@ const UserDashboard = () => {
           </div>
         </div>
       </form>
+     
      
      
       {showModal && <ModalComponent toggleModal={toggleModal} />}
