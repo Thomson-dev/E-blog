@@ -83,7 +83,8 @@ const Dashboard = () => {
     <div className="max-w-full  min-h-screen ">
       <Navbar2 />
 
-      <div className=" mx-auto mt-[2rem] flex flex-col w-[95%] 2xl:max-w-full  max-w-[1150px] ">
+      <div className=" mx-auto mt-[2rem] flex flex-col w-[95%] 2xl:max-w-full  max-w-
+      [1150px] ">
       
         <h2 className="xl:text-2xl text-lg text-slate-900 font-semibold">
           Users

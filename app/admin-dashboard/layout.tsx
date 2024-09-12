@@ -22,7 +22,7 @@ export default function SettingsLayout({
        </div>
       
 
-      <section className={`flex-1 `}>{children}</section>
+      <section className={`flex-1  `}>{children}</section>
     </div>
   );
 }
