@@ -45,7 +45,7 @@ const Dashboard = () => {
     const fetchUsers = async () => {
       try {
         const res = await fetch(
-          `https://e-blog-api.onrender.com/api/user/getusers`,
+          `https://e-blog-api.onrender.com/api/user/getusers `,
           {
             method: "GET",
             headers: {
@@ -77,21 +77,19 @@ const Dashboard = () => {
   }, [currentUser]);
   const router = useRouter();
 
-  const handleHomeClick = () => {
-    router.push("/");
-  };
+ 
 
   return (
-    <div className="w-full min-h-screen ">
+    <div className="max-w-full  min-h-screen ">
       <Navbar2 />
 
-      <div className=" mx-auto mt-[5rem] flex flex-col w-[95%] 2xl:max-w-full  max-w-[1150px] ">
+      <div className=" mx-auto mt-[2rem] flex flex-col w-[95%] 2xl:max-w-full  max-w-[1150px] ">
       
         <h2 className="xl:text-2xl text-lg text-slate-900 font-semibold">
           Users
         </h2>
 
-        <div className="grid lg:grid-cols-3 grid-cols-1 my-[4rem] gap-6">
+        <div className="grid lg:grid-cols-3 grid-cols-1 my-[2rem] gap-6">
           {customerData.map((item, index) => (
             <div
               key={index}
@@ -127,7 +125,7 @@ const Dashboard = () => {
             </div>
           ))}
         </div>
-        <div className=" mb-[4rem] border rounded-md p-2  max-w-full ">
+        <div className=" mb-[4rem] border rounded-md    ">
           <User users={users} />
         </div>
       </div>
