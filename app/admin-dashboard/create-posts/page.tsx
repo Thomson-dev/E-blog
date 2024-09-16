@@ -1,24 +1,21 @@
 "use client";
 import Navbar2 from "@/components/SideNavbar";
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
-  
 } from "firebase/storage";
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { app } from "../../../firebase";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
-import EditorJS from '@editorjs/editorjs';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
 import { toast } from "react-toastify";
 
-
-
+// Dynamically import ReactQuill to avoid SSR issues
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 //@ts-ignore
 const FileUpload = ({ setFile }) => {
@@ -30,80 +27,17 @@ const FileUpload = ({ setFile }) => {
         //@ts-ignore
         onChange={(e) => setFile(e.target.files[0])}
         className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-        //@ts-ignore
-        type="file"
-        accept="image/*"
       />
     </div>
   );
 };
 
-//@ts-ignore
-
-
-
-
-// import Header from '@editorjs/header';
-// import Paragraph from '@editorjs/paragraph'; // You can add more tools as needed
-
-
-// const DEFAULT_INITIAL_DATA = {
-//   time: new Date().getTime(),
-//   blocks: [
-//     {
-//       type: "header",
-//       data: {
-//         text: "This is my awesome editor!",
-//         level: 1
-//       }
-//     }
-//   ]
-// };
-
-// const TextEditor = ({ value, onChange }) => {
-
-//   const ejInstance = useRef();
-
-//   const initEditor = () => {
-//     const editor = new EditorJS({
-//       holder: 'editorjs',
-//       onReady: () => {
-//         ejInstance.current = editor;
-//       },
-//       autofocus: true,
-     
-//       onChange: async () => {
-//         let content = await editor.saver.save();
-//         console.log(content);
-//       }
-//     });
-//   };
-//   useEffect(() => {
-//     if (ejInstance.current === null) {
-//       initEditor();
-//     }
-
-//     return () => {
-//       ejInstance?.current?.destroy();
-//       ejInstance.current = null;
-//     };
-//   }, []);
-
-
-//   return <div id="editorjs" className="border !text-left lg:w-[80%] w-full p-2 rounded overflow-y-auto"></div>;
-// };
-
-
-
-
-
-
 const CreatePost = () => {
   //@ts-ignore
-  const {currentUser,loading,error: errorMessage} = useSelector((state) => state.user);
+  const { currentUser, loading, error: errorMessage } = useSelector((state) => state.user);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [file, setFile] = useState(null);
-  const [isloading ,setisLoading ] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [imageUploadError, setImageUploadError] = useState<string>('');
   const [formData, setFormData] = useState({
     title: "",
@@ -111,18 +45,7 @@ const CreatePost = () => {
     content: "",
   });
 
-
- 
-  console.log(formData);
-
   const dispatch = useDispatch();
-
-  // const [editorContent, setEditorContent] = useState("");
-  // //@ts-ignore
-  // const handleEditorChange = (content) => {
-  //   setEditorContent(content);
-  //   setFormData({ ...formData, content });
-  // };
 
   const handleUploadImage = async () => {
     try {
@@ -131,10 +54,10 @@ const CreatePost = () => {
         toast.error("Please select an image");
         return;
       }
-      //@ts-ignore
+       //@ts-ignore
       setImageUploadError(null);
       const storage = getStorage(app);
-      //@ts-ignore
+       //@ts-ignore
       const fileName = new Date().getTime() + "-" + file.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -143,7 +66,7 @@ const CreatePost = () => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //@ts-ignore
+             //@ts-ignore
           setImageUploadProgress(progress.toFixed(0));
         },
         (error) => {
@@ -154,9 +77,9 @@ const CreatePost = () => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUploadProgress(null);
-            //@ts-ignore
+             //@ts-ignore
             setImageUploadError(null);
-            //@ts-ignore
+             //@ts-ignore
             setFormData({ ...formData, image: downloadURL });
             toast.success("Image uploaded successfully");
           });
@@ -169,10 +92,10 @@ const CreatePost = () => {
       console.log(error);
     }
   };
-//@ts-ignore
+ //@ts-ignore
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setisLoading(true);
+    setIsLoading(true);
     try {
       const res = await fetch("https://e-blog-api.onrender.com/api/post/create", {
         method: "POST",
@@ -183,23 +106,19 @@ const CreatePost = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      setisLoading(false);
-  
+      setIsLoading(false);
+
       if (!res.ok) {
         toast.error(data.message);
-        // setPublishError(data.message);
         return;
       }
-  
+
       if (res.ok) {
         toast.success("Post uploaded");
-        // setPublishError(null);
-
-        setisLoading(false);
+        setIsLoading(false);
       }
     } catch (error) {
       toast.error("Something went wrong");
-      // setPublishError('Something went wrong');
     }
   };
 
@@ -229,15 +148,12 @@ const CreatePost = () => {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-[50%] p-2.5 dark:focus:border-blue-500"
             >
               <option selected>Choose a category</option>
-              <option value="US">Football</option>
-              {/* <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option> */}
+              <option value="Football">Football</option>
             </select>
           </div>
 
           <div className="flex justify-between sm:w-[70%] w-full mt-8 items-center">
-            <div className="w-[100%] gap-4 justify-between  flex-col md:flex-row flex ">
+            <div className="w-[100%] gap-4 justify-between flex-col md:flex-row flex">
               <FileUpload setFile={setFile} />
 
               <button
@@ -254,30 +170,30 @@ const CreatePost = () => {
           {/* @ts-ignore */}
             {formData.image && (
               <img
-              //@ts-ignore
+               //@ts-ignore
                 src={formData.image}
                 alt="upload"
-                className="w-[100%] lg:w-[70%] mt-5  h-auto object-cover"
+                className="w-[100%] lg:w-[70%] mt-5 h-auto object-cover"
               />
             )}
           </div>
 
           <div className="mt-8">
-          <ReactQuill
-          theme='snow'
-          placeholder='Write something...'
-          className='h-56 mb-12'
-          //@ts-ignore
-          required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
-        />
+            <ReactQuill
+              theme='snow'
+              placeholder='Write something...'
+              className='h-56 mb-12'
+              //@ts-ignore
+              required
+              onChange={(value) => {
+                setFormData({ ...formData, content: value });
+              }}
+            />
           </div>
 
           <div className="mt-8 flex justify-start">
-            <button type='submit' className="w-fit bg-black text-white px-6 rounded-md py-2 ">
-             {isloading ? 'Loading ...' : 'Publish'}
+            <button type='submit' className="w-fit bg-black text-white px-6 rounded-md py-2">
+              {isLoading ? 'Loading ...' : 'Publish'}
             </button>
           </div>
         </form>
