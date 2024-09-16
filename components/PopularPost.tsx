@@ -1,7 +1,7 @@
 import { TabItem } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 const articles2 = [
   {
     id: 1,
@@ -56,11 +56,25 @@ const articles2 = [
   },
 ];
 const PopularPost = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await fetch("https://e-blog-api.onrender.com/api/post/getPosts");
+      const data = await res.json();
+      setPosts(data.posts);
+      setLoading(false);
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <div className="flex mt-[3rem] flex-col ">
-      {articles2.slice(0, 4).map((article, index) => (
+      {posts && posts.slice(0, 4).map((article, index) => (
         <div key={index} className="p-2 flex gap-8">
           <Image
+          //@ts-ignore
             src={article.image}
             width={100}
             height={150}
@@ -69,9 +83,13 @@ const PopularPost = () => {
 
           <div className="">
             <h1 className="font-bold">
-              <Link href={""}>
+              {/* @ts-ignore */}
+              <Link href={`/home/post/${article._id}`}>
+              {/* @ts-ignore */}
                 {article.title.length > 50
+                //@ts-ignore
                   ? `${article.title.substring(0, 30)}...`
+                   //@ts-ignore
                   : article.title}
               </Link>
             </h1>

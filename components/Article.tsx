@@ -52,18 +52,19 @@ const articles2 = [
     image: "https://www.espn.com/photo/2024/0830/r1379876_1296x729_16-9.jpg",
   },
 ];
-
-const Article = () => {
+{/* @ts-ignore */}
+const Article = ({posts}) => {
   return (
     <div className="w-full py-20  min-h-[40rem] border lg:px-10 px-2 rounded-lg ">
       <div className=" sm:grid-cols-2 grid-cols-1 gap-9 gap-y-16 grid">
-        {articles2.slice(0, 4).map((article, index) => (
+        {/* @ts-ignore */}
+        {posts && posts.slice(0, 4).map((article, index) => (
           <div className="">
             <div className="inline-block overflow-hidden">
               <img
                 src={article.image}
                 alt=""
-                className="w-full h-[18rem] hover:scale-110 transition-transform duration-500 object-cover rounded-t-lg"
+                className="w-full h-[20rem] hover:scale-110 transition-transform duration-500 object-cover rounded-t-lg"
               />
             </div>
 
@@ -72,8 +73,8 @@ const Article = () => {
             </div>
 
             <div className="">
-                <h1 className="text-xl font-bold"> 
-                <Link href={`/home/post/${article.id}`}>{article.title}</Link>
+                <h1 className="lg:text-xl text-lg font-bold"> 
+                <Link href={`/home/post/${article._id}`}>{article.title}</Link>
 
                 </h1>
             </div>

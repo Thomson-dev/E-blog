@@ -53,8 +53,10 @@ const CheckboxLabel = () => {
     setIsChecked((prev) => !prev); // Toggles the checked state
   };
 
+  
+
   return (
-    <label className="inline-flex items-center cursor-pointer">
+    <label className="inline-flex items-center cursor-pointer bg-red-800">
       <input
         type="checkbox"
         checked={isChecked}
@@ -62,12 +64,12 @@ const CheckboxLabel = () => {
         className="sr-only peer"
       />
       <div
-        className={`relative w-11 h-6 rounded-full transition-colors duration-300
+        className={` relative !z-0 w-11 h-6 rounded-full transition-colors duration-300
           ${isChecked ? "bg-green-600" : "bg-gray-200"} 
           peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800`}
       >
         <div
-          className={`absolute w-5 h-5 bg-white rounded-full border transition-transform duration-300
+          className={`absolute !z-3 w-5 h-5 bg-white rounded-full border transition-transform duration-300
             ${isChecked ? "translate-x-full" : "translate-x-0"}
             border-gray-300`}
         ></div>

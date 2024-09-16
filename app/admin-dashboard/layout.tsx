@@ -16,7 +16,8 @@ export default function SettingsLayout({
   return (
     <div className="flex">
        {/* @ts-ignore */}
-       <div className="w-[250px] hidden lg:block">
+       <div className="w-[250px] hidden lg:block
+       ">
          {/* @ts-ignore */}
        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        </div>

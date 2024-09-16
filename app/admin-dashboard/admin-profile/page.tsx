@@ -360,6 +360,7 @@ const UserDashboard = () => {
                 <input
                   id="email"
                   type="email"
+                  
                   className="w-full py-3 outline-none rounded-md bg-[#F3F4F6]"
                   //@ts-ignore
                   value={formData.email}

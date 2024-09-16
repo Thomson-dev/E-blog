@@ -33,6 +33,12 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'www.hostinger.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ichef.bbci.co.uk',
         port: '',
         pathname: '/**',

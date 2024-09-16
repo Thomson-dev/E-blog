@@ -12,7 +12,7 @@ const Footer = () => {
     {
       logoPath: Logo2,
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod consectetur adipiscing elit. Sed do eiusmod.",
+        "Provide updates on player transfers, including rumors and confirmed moves.Analyze how new signings could impact a team or league.",
       socialIcons: [
         { iconPath: <FaFacebookSquare /> },
         { iconPath: <FaInstagramSquare /> },
@@ -52,7 +52,9 @@ const Footer = () => {
               <div className="">
                 <Image src={item.logoPath} alt="" width={100} height={100} />
 
-                <p className="mt-6 leading-6 text-slate-600 text-base">{item.description}</p>
+                <p className="mt-6 leading-6 text-slate-600 text-base ">
+                  {item.description}
+                </p>
                 <div className="flex mt-6 gap-5 items-center">
                   {item.socialIcons.map((_) => (
                     <div className="text-xl">{_.iconPath}</div>
@@ -112,16 +114,17 @@ const Footer = () => {
             </ul>
           </div>
           <div className="mt-7">
-            <h1 className="text-xl font-bold font-sans text-left lg:text-center">Get weekly updates</h1>
+            <h1 className="text-xl font-bold font-sans text-left lg:text-center">
+              Get weekly updates
+            </h1>
             <div className="mt-10 flex justify-center items-center flex-col">
-                <input
-                   
-                    placeholder="Enter your email"
-                    className="p-3 border border-red-600 rounded-md  w-full focus:outline-none"
-                />
-                <button className="p-3 text-white mt-5 w-full bg-red-700   hover:bg-red-600">
-                    Subscribe
-                </button>
+              <input
+                placeholder="Enter your email"
+                className="p-3 border border-red-600 rounded-md  w-full focus:outline-none"
+              />
+              <button className="p-3 text-white mt-5 w-full bg-red-700   hover:bg-red-600">
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
