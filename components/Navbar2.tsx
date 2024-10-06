@@ -21,7 +21,7 @@ const links = [
   { href: "/posts", label: "Posts" },
   { href: "/about", label: "About" },
 ];
-
+//@ts-ignore
 export const navLinks:NavLink[] = [
   {
     label: "Dashboard",
@@ -54,11 +54,7 @@ export const navLinks:NavLink[] = [
 const DropDown = () => {
   const dispatch = useDispatch();
   //@ts-ignore
-  const {
-    currentUser,
-    loading,
-    error: errorMessage,
-  } = useSelector((state) => state.user);
+  const { currentUser, loading,error: errorMessage,} = useSelector((state) => state.user);
   const [dropdown, setDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const router = useRouter();
@@ -205,11 +201,7 @@ const Navbar2 = () => {
     setIsClient(true);
   }, []);
   //@ts-ignore
-  const {
-    currentUser,
-    loading,
-    error: errorMessage,
-  } = useSelector((state) => state.user);
+  const {currentUser,loading,error: errorMessage,} = useSelector((state) => state.user);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -267,6 +259,7 @@ const Navbar2 = () => {
             } top-0`}
           >
             <ul className="mt-[5rem] flex px-5 space-y-12 flex-col">
+              {/* @ts-ignore */}
               {navLinks.map((link: NavLink) => {
                 return (
                   <li key={link.href} className={` `}>
