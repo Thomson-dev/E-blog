@@ -18,41 +18,32 @@ import {
 import { app } from "../../../firebase";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
-import dynamic from "next/dynamic";
+
 import { toast } from "react-toastify";
-import Navbar from "@/components/Navbar";
+
 
 import ReactQuill from "react-quill";
-import Link from "next/link";
-
-//@ts-ignore
 const FileUpload = ({ setFile }) => {
-  useEffect(() => {
-    // Code that accesses the document object
-    const handleFileUpload = () => {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.onchange = (e) => {
-        //@ts-ignore
-        const file = e.target.files[0];
-        setFile(file);
-      };
-      input.click();
-    };
-
-    handleFileUpload();
-  }, [setFile]);
-
-  return null;
+  return (
+    <div className="flex flex-col items-center">
+      <input
+        type="file"
+        accept="image/*"
+     
+        onChange={(e) => setFile(e.target.files[0])}
+        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+      />
+    </div>
+  );
 };
 
-//@ts-ignore
+
 const ModalComponent = ({ toggleModal, postId }) => {
-  //@ts-ignore
+
   const {currentUser,loading,error: errorMessage,} = useSelector((state) => state.user);
 
   
-//@ts-ignore
+
   const handleBackgroundClick = (e) => {
     if (e.target.id === "popup-modal") {
       toggleModal();
@@ -93,7 +84,7 @@ const ModalComponent = ({ toggleModal, postId }) => {
   return (
     <div
       id="popup-modal"
-      //@ts-ignore
+      
       tabIndex="-1"
       className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden"
       onClick={handleBackgroundClick}
@@ -165,9 +156,9 @@ const ModalComponent = ({ toggleModal, postId }) => {
   );
 };
 
-//@ts-ignore
+
 const Editpost = ({ isOpen, postId }) => {
-  //@ts-ignore
+ 
   const { currentUser, loading, error: errorMessage,} = useSelector((state) => state.user);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [file, setFile] = useState(null);
@@ -215,7 +206,7 @@ const Editpost = ({ isOpen, postId }) => {
     fetchPost();
   }, [postId]);
 
-  //@ts-ignore
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -252,10 +243,10 @@ const Editpost = ({ isOpen, postId }) => {
         toast.error("Please select an image");
         return;
       }
-      //@ts-ignore
+  
       setImageUploadError(null);
       const storage = getStorage(app);
-      //@ts-ignore
+   
       const fileName = new Date().getTime() + "-" + file.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -264,7 +255,7 @@ const Editpost = ({ isOpen, postId }) => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //@ts-ignore
+           
           setImageUploadProgress(progress.toFixed(0));
         },
         (error) => {
@@ -274,9 +265,9 @@ const Editpost = ({ isOpen, postId }) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            //@ts-ignore
+            
             setImageUploadProgress(null);
-            //@ts-ignore
+           
             setImageUploadError(null);
             setFormData({ ...formData, image: downloadURL });
             toast.success("Image uploaded successfully");
@@ -381,12 +372,12 @@ const Page = () => {
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  //@ts-ignore
+
   const toggleSidebar = (postId) => {
     setSelectedPostId(postId);
     setIsOpen(!isOpen);
   };
-//@ts-ignore
+
   const toggleModal = (postId) => {
     setSelectedPostId(postId);
     setShowModal(!showModal);
@@ -433,21 +424,21 @@ const Page = () => {
               {currentPosts.map((item, index) => (
                 <tr key={index}>
                   <td className="text-sm lg:text-base px-4 py-2">
-                  {/* @ts-ignore */}
+               
                     {new Date(item.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-4 py-2">
-                    {/* @ts-ignore */}
+                
                     <Image src={item.image} width={100} height={100} alt="" />
                   </td>
                   <td className="px-4 text-base hidden lg:table-cell py-2">
-                    {/* @ts-ignore */}
+                 
                     {item.title}
                   </td>
                   <td className="px-4 py-2">
                     <button className="text-white px-2 py-1 rounded">
                       <MdDelete
-                      // @ts-ignore
+                     
                         onClick={() => toggleModal(item._id)}
                         className="text-2xl text-red-600"
                       />
@@ -455,7 +446,7 @@ const Page = () => {
                   </td>
                   <td className="px-4 py-2">
                     <button
-                    // @ts-ignore
+                   
                       onClick={() => toggleSidebar(item._id)}
                       className="text-white px-2 py-1 rounded"
                     >
@@ -471,7 +462,7 @@ const Page = () => {
       <Editpost
         isOpen={isOpen}
         postId={selectedPostId}
-        //@ts-ignore
+      
         toggleModal={toggleModal}
       />
 
