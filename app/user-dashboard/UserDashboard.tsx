@@ -1,5 +1,5 @@
 "use client";
-import Navbar2 from "@/components/SideNavbar";
+
 import {
   deleteUserFailure,
   deleteUserStart,
