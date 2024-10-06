@@ -14,15 +14,18 @@ import "react-responsive-pagination/themes/classic.css";
 
 
 
-
+ 
+// @ts-ignore
 const CheckboxLabel = ({isAdmin}) => {
   console.log(isAdmin)
 
+  // @ts-ignore
   const { currentUser } = useSelector((state) => state.user);
   console.log(currentUser)
   const [isChecked, setIsChecked] = useState(isAdmin);
 
   const handleChange = () => {
+    //@ts-ignore
     setIsChecked((prev) => !prev);
     // Toggles the checked state
   };
@@ -153,6 +156,7 @@ const UserTable = () => {
                     {new Date(user.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-4 py-4 text-center whitespace-nowrap">
+                 {/* @ts-ignore */}
                   <CheckboxLabel isAdmin={user.isAdmin} />
                   </td>
                   <td className="px-4 py-4 text-center flex justify-center items-center whitespace-nowrap">
