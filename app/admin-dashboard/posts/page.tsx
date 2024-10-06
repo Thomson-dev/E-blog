@@ -24,19 +24,26 @@ import Navbar from "@/components/Navbar";
 
 import ReactQuill from "react-quill";
 import Link from "next/link";
+
 //@ts-ignore
 const FileUpload = ({ setFile }) => {
-  return (
-    <div className="flex flex-col items-center">
-      <input
-        type="file"
-        accept="image/*"
+  useEffect(() => {
+    // Code that accesses the document object
+    const handleFileUpload = () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.onchange = (e) => {
         //@ts-ignore
-        onChange={(e) => setFile(e.target.files[0])}
-        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-      />
-    </div>
-  );
+        const file = e.target.files[0];
+        setFile(file);
+      };
+      input.click();
+    };
+
+    handleFileUpload();
+  }, [setFile]);
+
+  return null;
 };
 
 //@ts-ignore
