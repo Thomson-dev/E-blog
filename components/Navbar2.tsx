@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import Link from "next/link";
@@ -6,11 +8,13 @@ import Logo2 from "../public/logo-04.svg";
 import Image from "next/image";
 import { CgMenuRight } from "react-icons/cg";
 import { useEffect, useRef, useState } from "react";
-import { FaSignInAlt, FaTimes } from "react-icons/fa";
-
+import { FaHome, FaSignInAlt, FaTimes, FaUser } from "react-icons/fa";
+import { IoIosNotificationsOutline, IoMdMenu } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { signoutSuccess } from "@/features/userSlice";
+import { GiRamProfile } from "react-icons/gi";
+import { BsFileEarmarkPost } from "react-icons/bs";
 
 const links = [
   { href: "/", label: "Home" },
@@ -18,12 +22,43 @@ const links = [
   { href: "/about", label: "About" },
 ];
 
+export const navLinks:NavLink[] = [
+  {
+    label: "Dashboard",
+    href: "/admin-dashboard",
+    icon: <FaHome />,
+  },
+  {
+    label: "Profile",
+    href: "/admin-dashboard/admin-profile",
+    icon: <GiRamProfile />,
+  },
+  {
+    label: "Users",
+    href: "/admin-dashboard/users",
+    icon: <FaUser/>,
+  },
 
+  {
+    label: "CreatePosts",
+    href: "/admin-dashboard/create-posts",
+    icon: <BsFileEarmarkPost />,
+  },
+  {
+    label: "Posts",
+    href: "/admin-dashboard/posts",
+    icon: <BsFileEarmarkPost />,
+  }  // Add more links as needed
+];
 //Drop down component
 const DropDown = () => {
   const dispatch = useDispatch();
-   //@ts-ignore
-  const { currentUser, loading, error: errorMessage,} = useSelector((state) => state.user);
+  //@ts-ignore
+  const {
+    currentUser,
+    loading,
+    error: errorMessage,
+  } = useSelector((state) => state.user);
   const [dropdown, setDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const router = useRouter();
@@ -34,14 +69,10 @@ const DropDown = () => {
     }
   }, [currentUser, router]);
 
-
-
-
-  
   useEffect(() => {
-     //@ts-ignore
+    //@ts-ignore
     const handleClickOutside = (event) => {
-       //@ts-ignore
+      //@ts-ignore
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdown(false);
       }
@@ -59,9 +90,12 @@ const DropDown = () => {
 
   const handleSignout = async () => {
     try {
-      const res = await fetch("https://e-blog-api.onrender.com/api/user/signout", {
-        method: "POST",
-      });
+      const res = await fetch(
+        "https://e-blog-api.onrender.com/api/user/signout",
+        {
+          method: "POST",
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message);
@@ -124,13 +158,17 @@ const DropDown = () => {
                   href="/user-dashboard"
                   className="block px-4 py-2 hover:bg-gray-100 text-left"
                 >
-                  Profile
+                  Profile 
                 </Link>
               </button>
             </li>
           </ul>
           <div className="py-1 ">
-            <button type="button" onClick={handleSignout} className="block px-4 py-2 text-red-500 w-full text-sm rounded-t-md text-left     ">
+            <button
+              type="button"
+              onClick={handleSignout}
+              className="block px-4 py-2 text-red-500 w-full text-sm rounded-t-md text-left     "
+            >
               <a href="#">Sign out</a>
             </button>
           </div>
@@ -140,14 +178,10 @@ const DropDown = () => {
   );
 };
 
-
-
-const Navbar = () => {
+const Navbar2 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
   const [isClient, setIsClient] = useState(false);
-
-
 
   useEffect(() => {
     // Check if the code is running on the client side
@@ -158,7 +192,6 @@ const Navbar = () => {
           console.log("scrolling");
         } else {
           setScroll(false);
-         
         }
       };
 
@@ -168,39 +201,43 @@ const Navbar = () => {
     }
   }, []);
 
-
-
   useEffect(() => {
     setIsClient(true);
   }, []);
- //@ts-ignore
-  const { currentUser, loading, error: errorMessage} = useSelector((state) => state.user);
+  //@ts-ignore
+  const {
+    currentUser,
+    loading,
+    error: errorMessage,
+  } = useSelector((state) => state.user);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className={`bg-white py-6 sticky top-0 z-50 transition
-    -all duration-300 ${scroll ? "shadow py-2" : "py-4"}`} >
+    <div
+      className={`bg-white py-6 sticky top-0 z-50 transition
+    -all duration-300 ${scroll ? "shadow py-2" : "py-4"}`}
+    >
       <div className="mx-auto w-[92%] relative  max-w-[1350px]">
         <div className="flex flex-row items-center justify-between">
           <Link href="/">
             <Image src={Logo2} alt="" width={100} height={100} />
           </Link>
-          <ul className="lg:flex hidden text-base flex-row gap-16 items-center">
-            {links.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </ul>
 
           {isClient && currentUser ? (
             <div className="flex items-center gap-5">
+              <div className="relative ">
+                <IoIosNotificationsOutline className="text-3xl text-[#B66A25]" />
+                <div className="w-5 h-5 flex items-center justify-center text-white -top-1 right-3 text-sm absolute rounded-full bg-red-600">
+                  0
+                </div>
+              </div>
               <DropDown />
+
               <button onClick={toggleSidebar}>
-                <CgMenuRight className="text-2xl" />
+                <CgMenuRight className="text-2xl lg:hidden block" />
               </button>
             </div>
           ) : (
@@ -223,55 +260,36 @@ const Navbar = () => {
           )}
 
           <div
-            className={`lg:w-[300px] w-[250px] z-50 h-screen fixed text-white bg-[#181823] ${
+            className={`lg:w-[300px] w-[250px] z-50 h-screen fixed text-white bg-white ${
               isOpen
-                ? "right-[0rem] duration-1000 delay-75"
-                : "-right-[30rem] duration-1000 delay-75"
-            } top-0` }
+                ? "left-[0rem] duration-1000 delay-75"
+                : "-left-[30rem] duration-1000 delay-75"
+            } top-0`}
           >
-            <div className="flex lg:mt-[10rem] mt-[7rem] flex-col lg:items-center">
-              <div className="hidden lg:items-center lg:flex flex-col">
-                <Image src={Logo} alt="" width={150} height={150} />
-                <h2 className="mt-[6rem] text-2xl">Get Newsletter</h2>
-
-                <input
-                  placeholder="Your email..."
-                  type="email"
-                  className="bg-[#181823] mt-4 px-2 border py-2 text-white"
-                />
-                <button className="bg-[#B66A25] w-[70%] py-3 mt-5">
-                  Subscribe now
-                </button>
-              </div>
-              {/* Mobile */}
-              <div className="lg:hidden block">
-                <ul className="flex px-7 flex-col gap-y-6 text-base items-start">
-                  {links.map((item) => (
+            <ul className="mt-[5rem] flex px-5 space-y-12 flex-col">
+              {navLinks.map((link: NavLink) => {
+                return (
+                  <li key={link.href} className={` `}>
                     <Link
-                      key={item.href}
-                      href={item.href}
-                      className="border-b border-slate-700 w-full pb-4"
+                      className="flex flex-row gap-3 text-lg items-center"
+                      href={link.href}
                     >
-                      {item.label}
+                      {link.icon && (
+                        <span className="text-2xl text-slate-700 ">
+                          {link.icon}
+                        </span>
+                      )}
+                      <span className="text-slate-700 ">{link.label}</span>
                     </Link>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <button
-              onClick={toggleSidebar}
-              className="absolute top-0 bg-[#B66A25] p-3"
-            >
-              <FaTimes />
-            </button>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-
-                
-         
         </div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default Navbar2;

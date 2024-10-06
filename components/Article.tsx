@@ -59,7 +59,7 @@ const Article = ({posts}) => {
       <div className=" sm:grid-cols-2 grid-cols-1 gap-9 gap-y-16 grid">
         {/* @ts-ignore */}
         {posts && posts.slice(0, 4).map((article, index) => (
-          <div className="">
+          <Link href={`/home/post/${article._id}`} className="">
             <div className="inline-block overflow-hidden">
               <img
                 src={article.image}
@@ -74,11 +74,11 @@ const Article = ({posts}) => {
 
             <div className="">
                 <h1 className="lg:text-xl text-lg font-bold"> 
-                <Link href={`/home/post/${article._id}`}>{article.title}</Link>
+                <Link href={`/home/post/${article._id}`} >{article.title}</Link>
 
                 </h1>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

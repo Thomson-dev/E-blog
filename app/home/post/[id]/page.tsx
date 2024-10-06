@@ -73,7 +73,7 @@ const CommentSection = ({ postId, comments, setComments }) => {
           placeholder="Write your thoughts here..."
         ></textarea>
         <div className="flex justify-between items-center mt-3">
-          <p className="text-gray-950 text-base ">
+          <p className="text-gray-950 lg:text-base text-sm ">
             {200 - comment.length} characters remaining
           </p>
           <button
@@ -139,9 +139,9 @@ const PostDetails = () => {
                 <div>
                   <Image
                     alt=""
-                    className="rounded-lg"
+                    className="rounded-lg w-full h-auto"
                     width={800}
-                    height={800}
+                    height={1000}
                     //@ts-ignore
                     src={post.image}
                   />

@@ -1,62 +1,39 @@
 "use client";
 import Footer from "@/components/Footer";
-import Navbar2 from "@/components/SideNavbar";
+import Navbar from "@/components/Navbar";
+import Navbar2 from "@/components/Navbar2";
+
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 
-const users = [
-  {
-    name: "John Doe",
-    status: "admin",
-    email: "john.doe@example.com",
-    createdAt: "2023-01-01",
-  },
-  {
-    name: "Jane Smith",
-    status: "user",
-    email: "jane.smith@example.com",
-    createdAt: "2023-02-15",
-  },
-  {
-    name: "Alice Johnson",
-    status: "admin",
-    email: "alice.johnson@example.com",
-    createdAt: "2023-03-10",
-  },
-  {
-    name: "Bob Brown",
-    status: "user",
-    email: "bob.brown@example.com",
-    createdAt: "2023-04-05",
-  },
-  {
-    name: "Alice Johnson",
-    status: "admin",
-    email: "alice.johnson@example.com",
-    createdAt: "2023-03-10",
-  },
-  {
-    name: "Bob Brown",
-    status: "user",
-    email: "bob.brown@example.com",
-    createdAt: "2023-04-05",
-  },
-];
 
-const CheckboxLabel = () => {
-  const [isChecked, setIsChecked] = useState(false);
+
+
+
+
+
+const CheckboxLabel = ({isAdmin}) => {
+  console.log(isAdmin)
+
+  const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser)
+  const [isChecked, setIsChecked] = useState(isAdmin);
 
   const handleChange = () => {
-    setIsChecked((prev) => !prev); // Toggles the checked state
+    setIsChecked((prev) => !prev);
+    // Toggles the checked state
   };
 
-  
+  console.log(isChecked)
 
   return (
-    <label className="inline-flex items-center cursor-pointer bg-red-800">
+    <label
+      className="flex items-center justify-center cursor-pointer"
+      onClick={handleChange}
+    >
       <input
         type="checkbox"
         checked={isChecked}
@@ -64,14 +41,14 @@ const CheckboxLabel = () => {
         className="sr-only peer"
       />
       <div
-        className={` relative !z-0 w-11 h-6 rounded-full transition-colors duration-300
-          ${isChecked ? "bg-green-600" : "bg-gray-200"} 
-          peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800`}
+        className={`relative lg:!z-0 w-11 h-6 rounded-full transition-colors duration-300 ${
+          isChecked ? "bg-green-600" : "bg-gray-200"
+        } peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800`}
       >
         <div
-          className={`absolute !z-3 w-5 h-5 bg-white rounded-full border transition-transform duration-300
-            ${isChecked ? "translate-x-full" : "translate-x-0"}
-            border-gray-300`}
+          className={`absolute !z-3 w-5 h-5 bg-white rounded-full border transition-transform duration-300 ${
+            isChecked ? "translate-x-full" : "translate-x-0"
+          } border-gray-300`}
         ></div>
       </div>
     </label>
@@ -97,6 +74,7 @@ const UserTable = () => {
           }
         );
         const data = await res.json();
+        console.log(data)
 
         if (res.ok) {
           setUsers(data.users);
@@ -124,7 +102,7 @@ const UserTable = () => {
   return (
     <div className="bg-gray-50  ">
       <Navbar2 />
-      <div className="max-w-[1200px]   w-[95%] mx-auto">
+      <div className="max-w-[1200px] flex flex-col justify-between  w-[95%] mx-auto">
         <table className="w-full border  table-fixed rounded-sm mx-auto mt-[5rem] divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
@@ -158,7 +136,7 @@ const UserTable = () => {
             {currentUsers &&
               currentUsers.map((user, index) => (
                 <tr key={index}>
-                  <td className="px-4 py-4 text-center whitespace-nowrap ">
+                  <td className="px-4 py-4 text-center truncate whitespace-nowrap ">
                     {/* @ts-ignore */}
                     {user.username}
                   </td>
@@ -166,7 +144,7 @@ const UserTable = () => {
                     {/* @ts-ignore */}
                     {user.isAdmin ? "Admin" : "User"}
                   </td>
-                  <td className="px-4 py-4 hidden lg:table-cell  text-center whitespace-nowrap">
+                  <td className="px-4 py-4 hidden lg:table-cell truncate  text-center whitespace-nowrap">
                     {/* @ts-ignore */}
                     {user.email}
                   </td>
@@ -175,7 +153,7 @@ const UserTable = () => {
                     {new Date(user.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-4 py-4 text-center whitespace-nowrap">
-                    <CheckboxLabel />
+                  <CheckboxLabel isAdmin={user.isAdmin} />
                   </td>
                   <td className="px-4 py-4 text-center flex justify-center items-center whitespace-nowrap">
                     <MdDelete className="text-2xl text-red-600" />
@@ -184,20 +162,20 @@ const UserTable = () => {
               ))}
           </tbody>
         </table>
-      </div>
 
-      <div className="flex max-w-[1200px] mx-auto justify-start items-start">
-        <ResponsivePagination
-          current={currentPage}
-          total={totalPages}
-          maxWidth={5}
-          onPageChange={setCurrentPage}
-          className="flex gap-4 text-[16px] border-blue-500 w-full py-10 justify-start"
-          pageItemClassName="w-[10vw] md:w-[3vw] text-center rounded-[4px] text-black border"
-          activeItemClassName="border-[blue] page-item"
-          disabledItemClassName="text-gray-400"
-          nextClassName="active:bg-green-700"
-        />
+        <div className="flex max-w-[1200px] w-[95%] mx-auto justify-start items-start">
+          <ResponsivePagination
+            current={currentPage}
+            total={totalPages}
+            maxWidth={5}
+            onPageChange={setCurrentPage}
+            className="flex gap-4 text-[16px] border-blue-500 w-full py-10 justify-start"
+            pageItemClassName="w-[10vw] md:w-[3vw] text-center rounded-[4px] text-black border"
+            activeItemClassName="border-[blue] page-item"
+            disabledItemClassName="text-gray-400"
+            nextClassName="active:bg-green-700"
+          />
+        </div>
       </div>
       <Footer />
     </div>

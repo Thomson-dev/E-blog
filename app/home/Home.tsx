@@ -40,6 +40,37 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
  
+const CheckboxLabel = () => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChange = () => {
+    setIsChecked((prev) => !prev); // Toggles the checked state
+  };
+
+  
+
+  return (
+    <label className="inline-flex items-center cursor-pointer  ">
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleChange}
+        className="sr-only peer"
+      />
+      <div
+        className={` relative !z-0 w-11 h-6 rounded-full transition-colors duration-300
+          ${isChecked ? "bg-green-600" : "bg-gray-200"} 
+          peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800`}
+      >
+        <div
+          className={`absolute !z-3 w-5 h-5 bg-white rounded-full border transition-transform duration-300
+            ${isChecked ? "translate-x-full" : "translate-x-0"}
+            border-gray-300`}
+        ></div>
+      </div>
+    </label>
+  );
+};
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -74,6 +105,7 @@ const Home = () => {
                       height={550}
                       alt={item.title}
                     />
+      
 
                     <div className="absolute text-white bottom-10 left-4">
                       <div className=" w-fit px-4 bg-red-600 ">

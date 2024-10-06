@@ -1,5 +1,5 @@
 "use client";
-import Navbar2 from "@/components/SideNavbar";
+
 import {
   deleteUserFailure,
   deleteUserStart,
@@ -22,6 +22,7 @@ import {
 import { app } from "../../../firebase";
 import { toast } from "react-toastify";
 import Footer from "@/components/Footer";
+import Navbar2 from "@/components/Navbar2";
 
 //@ts-ignore
 const ModalComponent = ({ toggleModal }) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar2 from "@/components/SideNavbar";
+
 import User from "@/components/User";
 
 import React, { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { PiUsersThreeFill } from "react-icons/pi";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Footer from "@/components/Footer";
+import Navbar2 from "@/components/Navbar2";
 
 const Dashboard = () => {
   const customerData = [

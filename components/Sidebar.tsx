@@ -35,10 +35,17 @@ export const navLinks: NavLink[] = [
   },
 
   {
-    label: "Posts",
+    label: "CreatePosts",
     href: "/admin-dashboard/create-posts",
     icon: <BsFileEarmarkPost />,
   },
+  {
+    label: "Posts",
+    href: "/admin-dashboard/posts",
+    icon: <BsFileEarmarkPost />,
+  }
+
+  
   // Add more links as needed
 ];
 const Sidebar = () => {
@@ -51,9 +58,9 @@ const Sidebar = () => {
         className={` h-screen w-[250px] fixed top-0 left-0 flex flex-col justify-between px-10 shadow border  text-black `}
       >
         <div className="mt-10">
-          <Link href={"/"}>
+          {/* <Link href={"/"}>
             <Image src={Logo2} alt="" width={100} height={100} />
-          </Link>
+          </Link> */}
           <ul className="mt-[5rem] flex space-y-12 flex-col">
             {navLinks.map((link: NavLink) => {
               const isActive =

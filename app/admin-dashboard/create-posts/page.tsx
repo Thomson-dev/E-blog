@@ -1,5 +1,5 @@
 "use client";
-import Navbar2 from "@/components/SideNavbar";
+
 import { useState, useEffect } from "react";
 import {
   getDownloadURL,
@@ -13,6 +13,8 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from 'next/dynamic';
 import { toast } from "react-toastify";
+import Navbar from "@/components/Navbar";
+import Navbar2 from "@/components/Navbar2";
 
 // Dynamically import ReactQuill to avoid SSR issues
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -125,7 +127,7 @@ const CreatePost = () => {
   return (
     <div>
       <Navbar2 />
-      <div className="max-w-[1000px] w-[95%] mx-auto py-12 min-h-[85vh]">
+      <div className="max-w-[1000px] w-[95%] mx-auto py-12 min-h-[95vh]">
         <h1 className="text-3xl py-6 font-semibold text-center">Create Post</h1>
 
         <form onSubmit={handleSubmit} className="flex-col mt-[2rem]">
@@ -182,7 +184,7 @@ const CreatePost = () => {
             <ReactQuill
               theme='snow'
               placeholder='Write something...'
-              className='h-56 mb-12'
+              className='h-56 -z-40 mb-12'
               //@ts-ignore
               required
               onChange={(value) => {
@@ -191,7 +193,7 @@ const CreatePost = () => {
             />
           </div>
 
-          <div className="mt-8 flex justify-start">
+          <div className="mt-[5rem] flex justify-start">
             <button type='submit' className="w-fit bg-black text-white px-6 rounded-md py-2">
               {isLoading ? 'Loading ...' : 'Publish'}
             </button>

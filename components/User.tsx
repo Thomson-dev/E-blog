@@ -33,11 +33,11 @@ const users2 = [
 const UserTable = ({ users }) => {
   return (
     <div className="overflow-x-auto">
-    <table className="w-full table-fixed divide-y px-3 divide-gray-200">
-      <thead className="bg-gray-50">
+    <table className="w-full table-auto divide-y px-3 divide-gray-200 ">
+      <thead className="bg-gray-50 ">
         <tr>
           <th scope="col" className="text-center py-3 min-w-[150px]">
-            Name
+            Name 
           </th>
           <th scope="col" className="text-center py-3 min-w-[150px]">
             Status
